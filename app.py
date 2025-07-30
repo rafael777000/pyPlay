@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def proxy(path):
-    url = f"https://openai.com/{path}"
+    url = f"https://google.com/{path}"
     if request.query_string:
         url += '?' + request.query_string.decode()
 
