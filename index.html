@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>RavenRock Proxy YouTube</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff0000;
+      color: #fff;
+      cursor: pointer;
+    }
+    iframe {
+      margin-top: 20px;
+      width: 90%;
+      height: 60vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛰️ RavenRock Proxy YouTube</h1>
+
+  <input id="ytLink" type="text" placeholder="Cole aqui o link do YouTube (ex: https://youtube.com/watch?v=...)">
+  
+  <select id="proxySelect">
+    <option value="https://proxy-youtube-01.onrender.com">Proxy 01</option>
+    <option value="https://proxy-youtube-02.onrender.com">Proxy 02</option>
+    <option value="https://proxy-youtube-03.onrender.com">Proxy 03</option>
+  </select>
+
+  <button onclick="abrirNoProxy()">Assistir via Proxy</button>
+
+  <iframe id="player" allowfullscreen></iframe>
+
+  <script>
+    function extrairCaminhoYoutube(url) {
+      try {
+        const parsed = new URL(url);
+        const path = parsed.pathname;
+        const search = parsed.search;
+        return path + search;
+      } catch (e) {
+        alert("URL inválida!");
+        return null;
+      }
+    }
+
+    function abrirNoProxy() {
+      const link = document.getElementById("ytLink").value;
+      const proxyBase = document.getElementById("proxySelect").value;
+      const caminho = extrairCaminhoYoutube(link);
+      if (caminho) {
+        const finalUrl = proxyBase + caminho;
+        document.getElementById("player").src = finalUrl;
+      }
+    }
+  </script>
+
+</body>
+</html>
