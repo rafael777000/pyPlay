@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def proxy(path):
-    url = f"https://www.letras.mus.br/{path}"
+    url = f"https://savefrom.net/{path}"
     if request.query_string:
         url += '?' + request.query_string.decode()
 
