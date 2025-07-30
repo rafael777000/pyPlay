@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def proxy(path):
-    url = f"https://savefrom.net/{path}"
+    url = f"https://www.dailymotion.com/{path}"
     if request.query_string:
         url += '?' + request.query_string.decode()
 
